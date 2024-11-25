@@ -69,7 +69,7 @@ def generate_daily_report():
 def send_rental_invoice_email(customer_email:str, rental_details:dict):
     from email.mime.text import MIMEText
     try:
-        message = MIMETEXT(f"Thank you for renting a bike \n\n Details: {rental_details}")
+        message = MIMEText(f"Thank you for renting a bike \n\n Details: {rental_details}")
         message['Subject'] = "Bike rental invoice"
         message['To'] = customer_email
         message['From'] = "email@email.com"
