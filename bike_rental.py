@@ -62,3 +62,22 @@ def generate_daily_report():
     date = datetime.now().strftime("%Y-%m-%d")
 
     report_file = f"data/daily_report_{date}.json"
+    with open(report_file, "w") as f:
+        json.dump(rentals, f, indent=4)
+    print(f"Daily report generated: {report_file}")
+
+def send_rental_invoice_email(customer_email:str, rental_details:dict):
+    from email.mime.text import MIMEText
+    try:
+        message = MIMETEXT(f"Thank you for renting a bike \n\n Details: {rental_details}")
+        message['Subject'] = "Bike rental invoice"
+        message['To'] = customer_email
+        message['From'] = "email@email.com"
+
+        with smtplib.SMTP("smtp.gmail.com", 587) as server:
+            server.starttls()
+            server.login("mail wprowdz", "a tu haslo")
+            server.send_message(message)
+
+    except Exception as e:
+        print(f"Failed to send email: {e}")
