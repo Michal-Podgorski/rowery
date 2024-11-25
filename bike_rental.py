@@ -81,3 +81,17 @@ def send_rental_invoice_email(customer_email:str, rental_details:dict):
 
     except Exception as e:
         print(f"Failed to send email: {e}")
+
+
+
+def validate_rental_input(customer_name:str, rental_duration:int):
+    if not customer_name.strip():
+        print("Customer name connot be empty")
+        return False
+
+    if rental_duration < 0:
+        print("rent duration must be a possitive integer")
+        return False
+
+    return True
+
