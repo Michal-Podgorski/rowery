@@ -3,6 +3,7 @@ import random
 import re
 import os
 
+path = "/home/u340456/zarzadzanie/data/users.json"
 user_data = {}
 
 def add_user(user_data:dict):
@@ -20,8 +21,10 @@ def add_user(user_data:dict):
         "regon":regon,
         "nip":nip
     }
-    with open("/home/u340456/zarzadzanie/data/users.json", "w") as f:
+    with open(path, "w") as f:
         json.dump(user_data, f, indent = 4)
 
-add_user(0)
-
+def edit_user(user_id, update_data):
+    with open(path, "r") as f:
+        user_data = json.load(f)
+        
