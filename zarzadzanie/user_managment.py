@@ -21,10 +21,10 @@ def add_user(user_data:dict):
         "regon":regon,
         "nip":nip
     }
-    with open(path, "w") as f:
+    with open(path, "a") as f:
         json.dump(user_data, f, indent = 4)
 
 def edit_user(user_id, update_data):
     with open(path, "r") as f:
-        user_data = json.load(f)
-        
+        json.load(f)
+
